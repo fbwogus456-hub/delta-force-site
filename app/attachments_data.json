@@ -1,0 +1,129 @@
+[
+  {
+    "name": "M14 30-Round Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/M14%2030-Round%20Mag",
+    "stats": {
+      "Holds": "30",
+      "Handling": "-8"
+    }
+  },
+  {
+    "name": "M700 10-Round Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/M700%2010-Round%20Mag",
+    "stats": {
+      "Holds": "10",
+      "Handling": "-4"
+    }
+  },
+  {
+    "name": "M250 75-Round Belt",
+    "url": "https://deltaforcetools.gg/wiki/attachment/M250%2075-Round%20Belt",
+    "stats": {
+      "Holds": "75",
+      "Handling": "+8"
+    }
+  },
+  {
+    "name": "5.56x45 30-Round Polymer Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/5${point}56x45%2030-Round%20Polymer%20Mag",
+    "stats": {
+      "Holds": "30",
+      "Handling": "+2"
+    }
+  },
+  {
+    "name": "G-Series Pistol 25-Round Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/G-Series%20Pistol%2025-Round%20Mag",
+    "stats": {
+      "Holds": "25",
+      "Handling": "-4"
+    }
+  },
+  {
+    "name": "G3 30-Round Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/G3%2030-Round%20Mag",
+    "stats": {
+      "Holds": "30",
+      "Handling": "-8"
+    }
+  },
+  {
+    "name": "PSG 20-Round Extended Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/PSG%2020-Round%20Extended%20Mag",
+    "stats": {
+      "Holds": "20",
+      "Handling": "-8"
+    }
+  },
+  {
+    "name": "SG552 45-Round Extended Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/SG552%2045-Round%20Extended%20Mag",
+    "stats": {
+      "Holds": "45",
+      "Handling": "-8"
+    }
+  },
+  {
+    "name": "5.8 Newtype 60-Round Drum Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/5${point}8%20Newtype%2060-Round%20Drum%20Mag",
+    "stats": {
+      "Holds": "60",
+      "Handling": "-9"
+    }
+  },
+  {
+    "name": "AKS-74 30-Round Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/AKS-74%2030-Round%20Mag",
+    "stats": {
+      "Holds": "30"
+    }
+  },
+  {
+    "name": "AKS-74 45-Round Extended Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/AKS-74%2045-Round%20Extended%20Mag",
+    "stats": {
+      "Holds": "45",
+      "Handling": "-5"
+    }
+  },
+  {
+    "name": "AUG 60-Round Drum Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/AUG%2060-Round%20Drum%20Mag",
+    "stats": {
+      "Holds": "60",
+      "Handling": "-12"
+    }
+  },
+  {
+    "name": "SR-25 20-Round Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/SR-25%2020-Round%20Mag",
+    "stats": {
+      "Holds": "20",
+      "Handling": "-9"
+    }
+  },
+  {
+    "name": "M1911 11-Round Extended Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/M1911%2011-Round%20Extended%20Mag",
+    "stats": {
+      "Holds": "11",
+      "Handling": "-4"
+    }
+  },
+  {
+    "name": "AKM 40-Round Extended Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/AKM%2040-Round%20Extended%20Mag",
+    "stats": {
+      "Holds": "40",
+      "Handling": "-8"
+    }
+  },
+  {
+    "name": "M7 6.8 30-Round Mag",
+    "url": "https://deltaforcetools.gg/wiki/attachment/M7%206${point}8%2030-Round%20Mag",
+    "stats": {
+      "Holds": "30",
+      "Handling": "-4"
+    }
+  }
+]

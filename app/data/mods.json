@@ -1,0 +1,52 @@
+[
+  {
+    "id": "m4a1-stable-entry",
+    "weaponName": "M4A1",
+    "code": "M4A1-DELTA-STABLE-01",
+    "nickname": "DeltaFox",
+    "title": "입문용 안정화 M4A1",
+    "description": "수직 반동을 최대한 억제한 입문용 세팅입니다. 중·단거리 교전에서 탄흔 제어가 쉽고, 좌우 흔들림을 줄이는 데 집중했습니다.",
+    "playstyle": "중거리 교전 / 팀플레이 / 라인 유지",
+    "tags": ["초보 추천", "저반동", "AR"],
+    "createdAt": "2025-11-26",
+    "recommends": 18
+  },
+  {
+    "id": "m4a1-aggressive",
+    "weaponName": "M4A1",
+    "code": "M4A1-AGGRO-RUSH-07",
+    "nickname": "RushKing",
+    "title": "러시 전용 고속 M4A1",
+    "description": "ADS 속도와 이동 사격 안정에 올인한 러시 세팅입니다. 반동은 다소 있지만 근·중거리에서 TTK를 극대화하는 것이 목표입니다.",
+    "playstyle": "돌격 / 엔트리 / 코너 푸시",
+    "tags": ["러시", "고속", "근거리"],
+    "createdAt": "2025-11-25",
+    "recommends": 27
+  },
+  {
+    "id": "akm-recoil-master",
+    "weaponName": "AKM",
+    "code": "AKM-RECOIL-TAMER-03",
+    "nickname": "RecoilMaster",
+    "title": "AKM 반동 조련사 세팅",
+    "description": "AKM의 강한 첫 발 반동을 제어해 중거리 교전에서도 안정적인 탄 퍼짐을 노리는 세팅입니다. 헤드 라인 유지에 자신 있는 유저에게 추천합니다.",
+    "playstyle": "중거리 / 앵글 고정 / 헤드라인 유지",
+    "tags": ["AKM", "반동제어", "중거리"],
+    "createdAt": "2025-11-24",
+    "recommends": 34
+  },
+  {
+    "id": "m700-spotter",
+    "weaponName": "M700",
+    "code": "M700-SPOTTER-02",
+    "nickname": "ColdScope",
+    "title": "정찰 지원형 M700",
+    "description": "완전 저반동 저격이 아니라, 조준속도와 재장전 속도를 적당히 섞어 '정찰 + 픽' 역할을 동시에 수행하는 세팅입니다.",
+    "playstyle": "정찰 / 정보 제공 / 중장거리 픽",
+    "tags": ["스나이퍼", "정찰", "하이브리드"],
+    "createdAt": "2025-11-22",
+    "recommends": 12
+  }
+]
+
+
