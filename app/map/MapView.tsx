@@ -2,7 +2,6 @@
 
 import "leaflet/dist/leaflet.css";
 
-import type { Icon, LatLngLiteral } from "leaflet";
 import { useEffect, useState } from "react";
 import {
   MapContainer,
@@ -11,6 +10,20 @@ import {
   TileLayer,
   useMapEvents,
 } from "react-leaflet";
+
+// Leaflet 타입을 직접 정의 (빌드 시 leaflet 모듈 로드 방지)
+type LatLngLiteral = {
+  lat: number;
+  lng: number;
+};
+
+type Icon = {
+  iconUrl: string;
+  iconSize: [number, number];
+  iconAnchor: [number, number];
+  popupAnchor: [number, number];
+  className: string;
+};
 
 type MarkerInfo = {
   id: number;
