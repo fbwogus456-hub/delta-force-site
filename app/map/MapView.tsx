@@ -2,11 +2,10 @@
 
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
-// react-leaflet은 클라이언트 사이드에서만 로드해야 안전합니다.
-import dynamic from "next/dynamic";
+import dynamic from "next/dynamic"; // 서버 에러 방지용 도구
 import type { Icon, LatLngLiteral } from "leaflet"; // 진짜 타입 가져오기
 
-// 1. react-leaflet 컴포넌트들을 동적(Dynamic)으로 로딩해서 서버 사이드 렌더링(SSR) 에러 방지
+// 1. 지도 부품들을 "나중에 로딩해줘(Dynamic)"라고 설정하기
 const MapContainer = dynamic(
   () => import("react-leaflet").then((mod) => mod.MapContainer),
   { ssr: false }
@@ -23,8 +22,9 @@ const Popup = dynamic(
   () => import("react-leaflet").then((mod) => mod.Popup),
   { ssr: false }
 );
+// 방금 1단계에서 만든 파일을 여기서 가져오는 겁니다!
 const MapClickHandler = dynamic(
-  () => import("./MapClickHandler"), // 아래에서 파일을 분리해야 함
+  () => import("./MapClickHandler"), 
   { ssr: false }
 );
 
@@ -35,7 +35,6 @@ type MarkerInfo = {
   note: string;
 };
 
-// 회색 타일 이미지 (Placeholder)
 const placeholderTile =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Crect width='256' height='256' fill='%234a4a4a'/%3E%3C/svg%3E";
 
@@ -44,10 +43,8 @@ export default function MapView() {
   const [redPinIcon, setRedPinIcon] = useState<Icon | null>(null);
 
   useEffect(() => {
-    // Leaflet 라이브러리를 비동기로 가져와서 아이콘 생성
     (async () => {
       const L = (await import("leaflet")).default;
-      
       const icon = L.icon({
         iconUrl:
           "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 48'%3E%3Cpath fill='%23ff3b30' d='M16 0C7.16 0 0 7.16 0 16c0 10.62 16 32 16 32s16-21.38 16-32C32 7.16 24.84 0 16 0z'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E",
@@ -72,7 +69,6 @@ export default function MapView() {
     );
   };
 
-  // 아이콘이 로드되지 않았으면 로딩 화면 표시
   if (!redPinIcon) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-black text-gray-400">
@@ -105,14 +101,7 @@ export default function MapView() {
             style={{ backgroundColor: "#3f3f3f" }}
           >
             <TileLayer url={placeholderTile} />
-            
-            {/* 
-               주의: MapClickHandler는 useMapEvents 훅을 사용하므로 
-               반드시 별도 파일로 분리하거나, 아래 로직을 MapEvents 컴포넌트로 빼야 합니다.
-               Vercel 빌드 오류를 피하기 위해 이번에는 인라인 컴포넌트로 처리합니다.
-            */}
-            <MapEventsHandler addMarker={addMarker} />
-
+            <MapClickHandler addMarker={addMarker} />
             {markers.map((marker) => (
               <Marker
                 key={marker.id}
@@ -138,19 +127,4 @@ export default function MapView() {
       </div>
     </div>
   );
-}
-
-// 이 컴포넌트는 지도 이벤트를 처리합니다. 
-// Leaflet이 로드된 후 실행되도록 Dynamic Import 안에서 사용되어야 합니다.
-// 하지만 편의상 여기서 정의하고, 아래에서 dynamic import 없이 사용하되
-// MapContainer 내부에서만 렌더링되게 하여 에러를 피합니다.
-import { useMapEvents } from "react-leaflet";
-
-function MapEventsHandler({ addMarker }: { addMarker: (pos: LatLngLiteral) => void }) {
-  useMapEvents({
-    click(e) {
-      addMarker(e.latlng);
-    },
-  });
-  return null;
 }

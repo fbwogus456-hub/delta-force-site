@@ -33,9 +33,9 @@ export default function RootLayout({
           <nav className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-6 py-4 text-sm font-medium uppercase tracking-wide">
             <Link
               href="/"
-              className="text-lg font-semibold text-white transition-colors hover:text-yellow-400"
+              className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent transition-all hover:from-cyan-300 hover:via-emerald-300 hover:to-teal-300 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]"
             >
-              Delta Force Hub
+              DELTA WIKI
             </Link>
             <div className="flex flex-wrap items-center gap-4 text-white">
               {[
@@ -43,12 +43,12 @@ export default function RootLayout({
                 { href: "/gunsmith", label: "총기모딩" },
                 { href: "/map", label: "맵 전략" },
                 { href: "/news", label: "뉴스" },
-                { href: "/board", label: "전술 게시판" },
+                { href: "/board", label: "정보공유" },
               ].map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="transition-colors hover:text-yellow-400 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400"
+                  className="transition-colors hover:text-cyan-400 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400"
                 >
                   {item.label}
                 </Link>

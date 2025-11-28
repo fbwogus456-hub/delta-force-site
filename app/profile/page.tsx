@@ -36,14 +36,23 @@ export default function ProfilePage() {
       setUser(user);
 
       // profiles 테이블에서 프로필 정보 가져오기
+      // maybeSingle()을 사용하면 레코드가 없을 때 에러 대신 null을 반환
       const { data: profileData, error: profileError } = await supabase
         .from("profiles")
         .select("id, nickname, avatar_url")
         .eq("id", user.id)
-        .single();
+        .maybeSingle();
 
-      if (profileError) {
+      // 실제 에러가 발생한 경우만 로그 출력
+      if (profileError && profileError.code !== "PGRST116") {
         console.error("프로필 로드 실패:", profileError);
+      }
+
+      // 프로필 데이터가 있으면 사용, 없으면 기본값 설정
+      if (profileData) {
+        setProfile(profileData);
+        setNickname(profileData.nickname || "");
+      } else {
         // 프로필이 없으면 기본값으로 설정
         setProfile({
           id: user.id,
@@ -51,9 +60,6 @@ export default function ProfilePage() {
           avatar_url: user.user_metadata?.avatar_url || null,
         });
         setNickname(user.user_metadata?.preferred_username || user.user_metadata?.full_name || "");
-      } else {
-        setProfile(profileData);
-        setNickname(profileData.nickname || "");
       }
 
       setLoading(false);
@@ -63,7 +69,7 @@ export default function ProfilePage() {
   }, [supabase, router]);
 
   const handleUpdateNickname = async () => {
-    if (!user || !profile) return;
+    if (!user) return;
 
     // 2글자 이상 체크
     if (nickname.trim().length < 2) {
@@ -75,23 +81,43 @@ export default function ProfilePage() {
     setUpdating(true);
 
     try {
-      const { error: updateError } = await supabase
+      // upsert를 사용하여 프로필이 있으면 업데이트, 없으면 생성
+      const { error: upsertError } = await supabase
         .from("profiles")
-        .update({ nickname: nickname.trim() })
-        .eq("id", user.id);
+        .upsert(
+          {
+            id: user.id,
+            nickname: nickname.trim(),
+            avatar_url: user.user_metadata?.avatar_url || null,
+          },
+          {
+            onConflict: "id",
+          }
+        );
 
-      if (updateError) {
-        // Unique constraint 에러 체크
-        if (updateError.code === "23505" || updateError.message.includes("unique")) {
+      if (upsertError) {
+        // Unique constraint 에러 체크 (nickname 중복)
+        if (upsertError.code === "23505" || upsertError.message.includes("unique")) {
           setError("이미 사용 중인 닉네임입니다.");
         } else {
+          console.error("닉네임 변경 오류:", upsertError);
           setError("닉네임 변경에 실패했습니다. 다시 시도해주세요.");
         }
         setUpdating(false);
         return;
       }
 
-      // 성공
+      // 성공 - 프로필 정보 다시 불러오기
+      const { data: updatedProfile } = await supabase
+        .from("profiles")
+        .select("id, nickname, avatar_url")
+        .eq("id", user.id)
+        .single();
+
+      if (updatedProfile) {
+        setProfile(updatedProfile);
+      }
+
       alert("닉네임이 변경되었습니다.");
       window.location.reload();
     } catch (err) {
@@ -112,12 +138,12 @@ export default function ProfilePage() {
     );
   }
 
-  if (!user || !profile) {
+  if (!user) {
     return null;
   }
 
-  const avatarUrl = profile.avatar_url || user.user_metadata?.avatar_url || "https://cdn.discordapp.com/embed/avatars/0.png";
-  const displayNickname = profile.nickname || user.user_metadata?.preferred_username || user.user_metadata?.full_name || "닉네임 없음";
+  const avatarUrl = profile?.avatar_url || user.user_metadata?.avatar_url || "https://cdn.discordapp.com/embed/avatars/0.png";
+  const displayNickname = profile?.nickname || user.user_metadata?.preferred_username || user.user_metadata?.full_name || "닉네임 없음";
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black px-6 py-16 text-white">

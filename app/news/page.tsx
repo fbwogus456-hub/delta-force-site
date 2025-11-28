@@ -30,7 +30,7 @@ export default function NewsPage() {
     <div className="min-h-screen bg-gradient-to-br from-black via-zinc-950 to-black px-6 py-10 text-white">
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <header className="border-b border-white/10 pb-6">
-          <p className="text-xs uppercase tracking-[0.4em] text-yellow-400">
+          <p className="text-xs uppercase tracking-[0.4em] bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
             Intel Feed
           </p>
           <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
@@ -46,7 +46,7 @@ export default function NewsPage() {
           <section className="overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 via-zinc-900/70 to-black shadow-2xl shadow-black/50">
             <Link href={`/news/${main.id}`} className="flex h-full flex-col lg:flex-row">
               <div className="relative h-52 w-full overflow-hidden bg-zinc-900/80 lg:h-auto lg:w-2/5">
-                <div className="absolute inset-0 bg-gradient-to-tr from-yellow-500/10 via-transparent to-blue-500/20" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-emerald-500/10 to-blue-500/20" />
                 {/* 썸네일 */}
                 <div className="flex h-full w-full items-center justify-center">
                   <span className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500">
@@ -94,9 +94,9 @@ export default function NewsPage() {
                 <Link
                   key={item.id}
                   href={`/news/${item.id}`}
-                  className="group flex gap-3 rounded-xl border border-transparent bg-zinc-900/50 px-3 py-3 text-sm transition-colors hover:border-yellow-500/60 hover:bg-zinc-900"
+                  className="group flex gap-3 rounded-xl border border-transparent bg-zinc-900/50 px-3 py-3 text-sm transition-colors hover:border-cyan-500/60 hover:bg-zinc-900"
                 >
-                  <div className="mt-0.5 h-10 w-10 flex-shrink-0 rounded-lg bg-zinc-950/80 ring-1 ring-white/5 group-hover:ring-yellow-400/40" />
+                  <div className="mt-0.5 h-10 w-10 flex-shrink-0 rounded-lg bg-zinc-950/80 ring-1 ring-white/5 group-hover:ring-cyan-400/40" />
                   <div className="flex min-w-0 flex-1 flex-col gap-1">
                     <div className="flex items-center gap-2 text-[11px]">
                       <span
