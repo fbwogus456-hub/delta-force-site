@@ -97,12 +97,30 @@ export default function LoginButton() {
   }, [supabase]);
 
   const handleLogin = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: "discord",
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
-    });
+    try {
+      // 현재 페이지의 origin을 명시적으로 가져오기
+      const origin = typeof window !== "undefined" ? window.location.origin : "";
+      
+      if (!origin) {
+        console.error("Origin을 가져올 수 없습니다.");
+        return;
+      }
+
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "discord",
+        options: {
+          redirectTo: `${origin}/auth/callback?next=/`,
+        },
+      });
+
+      if (error) {
+        console.error("로그인 오류:", error);
+        alert("로그인에 실패했습니다. 다시 시도해주세요.");
+      }
+    } catch (err) {
+      console.error("로그인 중 오류:", err);
+      alert("로그인 중 오류가 발생했습니다.");
+    }
   };
 
   const handleLogout = async () => {
