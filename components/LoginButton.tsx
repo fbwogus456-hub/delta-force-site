@@ -98,8 +98,10 @@ export default function LoginButton() {
 
   const handleLogin = async () => {
     try {
-      // 현재 페이지의 origin을 명시적으로 가져오기
-      const origin = typeof window !== "undefined" ? window.location.origin : "";
+      // NEXT_PUBLIC_SITE_URL 환경 변수를 우선적으로 사용, 없으면 window.location.origin 사용
+      const origin = 
+        process.env.NEXT_PUBLIC_SITE_URL || 
+        (typeof window !== "undefined" ? window.location.origin : "");
       
       if (!origin) {
         console.error("Origin을 가져올 수 없습니다.");
